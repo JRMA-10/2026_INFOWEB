@@ -1,18 +1,13 @@
 class Circulo:
-    @staticmethod
     def __init__(self):
         self.__raio = 0
-    @staticmethod
     def set_raio(self, r):
         if r >= 0: self.__raio = r
         else: raise ValueError
-    @staticmethod
     def get_raio(self):
         return self.__raio
-    @staticmethod
     def calcular_comprimento(self):
         return (6,28 * self.__raio)
-    @staticmethod
     def calcular_area(self):
         return 3,14 * (self.__raio ** 2)
 

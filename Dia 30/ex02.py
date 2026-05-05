@@ -27,7 +27,7 @@ class Contato:
 
 class ContatoUI:
     contatos = [] #atributo de classe 
-    @staticmethod
+    @staticmethod #Esse método serve para reiniar os valores sempre que a função for chamada
     def main():
         op = 0
         while op != 6:
@@ -48,8 +48,8 @@ class ContatoUI:
         fone = input('Informe o telefone: ')
         x = Contato(id, nome, email, fone)
         cls.contatos.append(x)
-    @classmethod
-    def listar(cls):
+    @classmethod #permite usar valores que estão armazenados na classe, mas fora da função
+    def listar(cls): #para usar esse valores, é necessário colocar como parâmetro CLS
         if len(cls.contatos) == 0: print('Nenhum contato na agenda!')
         else: 
             for x in cls.contatos: print(x)

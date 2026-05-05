@@ -25,7 +25,7 @@ class Pais:
     def get_area(self):
         return self.__area
     def densidade(self):
-        return self.get_populacao / self.get_area
+        return self.get_populacao() / self.get_area()
     def __str__(self):
         return f'Id: {self.get_id()} | Nome: {self.get_nome()} | População: {self.get_populacao()} | Área: {self.get_area():.2f} | Densidade demográfica: {self.densidade():.2f}'
 
@@ -57,7 +57,8 @@ class PaisUI:
         cls.paises.append(o)
     @classmethod
     def listar(cls):
-        print(n for n in cls.paises)
+        for n in cls.paises:
+            print(n)
     @classmethod
     def atualizar(cls):
         PaisUI.listar()
@@ -67,7 +68,9 @@ class PaisUI:
                 nome = input('Digite o nome do País: \n')
                 populacao = int(input('Digite a população do País: \n'))
                 area = float(input('Digite a área: '))
-                obj(id, nome, populacao, area)
+                obj.set_nome(nome)
+                obj.set_populacao(populacao)
+                obj.set_area(area)
     @classmethod
     def excluir(cls):
         id = int(input('Informe o ID para alteração: '))
@@ -76,17 +79,20 @@ class PaisUI:
                 cls.paises.remove(obj)
     @classmethod
     def mais_populoso(cls):
-        populacao = []
+        populacao = {}
+        valores = []
         for c in cls.paises:
-            populacao.append(c.get_populacao())
-        maior = max(populacao)
-        print(maior)
+            populacao[c.get_populacao()] = c.get_nome()
+            valores.append(c.get_populacao())
+        maior = max(valores)
+        print(populacao[maior])
     @classmethod
     def mais_povoado(cls):
-        povoamento = []
+        povoamento = {}
+        valores = []
         for c in cls.paises:
-            povoamento.append(c.densidade())
-        maior = max(povoamento)
-        print(maior)
-
+            povoamento[c.densidade()] = c.get_nome()
+            valores.append(c.densidade())
+        maior = max(valores)
+        print(povoamento[maior])
 PaisUI.main()

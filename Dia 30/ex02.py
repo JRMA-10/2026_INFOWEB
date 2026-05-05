@@ -36,7 +36,8 @@ class ContatoUI:
             elif op == 2: ContatoUI.listar()
             elif op == 3: ContatoUI.atualizar()
             elif op == 4: ContatoUI.excluir()
-
+            elif op == 5: ContatoUI.pesquisar()
+            else: op = 6
     def menu():
         print('[1] - INSERIR \n[2] - LISTAR \n[3] - ATUALIZAR \n[4] - EXCLUIR \n[5] - PESQUISAR \n[6] - FIM')
         return int(input('Sua escolha: '))
@@ -70,6 +71,12 @@ class ContatoUI:
         for i in cls.contatos: print(i)
         n = int(input('Informe o id do contato que você deseja deletar: '))
         for ob in cls.contatos:
-            if ob.get_id == n:
+            if ob.get_id() == n:
                 cls.contatos.remove(ob)
+    @classmethod
+    def pesquisar(cls): 
+        iniciais = input('Infome o nome do contato: \n').strip()
+        for obj in cls.contatos:
+            if obj.get_nome().startswith(iniciais):
+                print(obj)
 ContatoUI.main()

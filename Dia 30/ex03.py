@@ -44,7 +44,8 @@ class PaisUI:
         area = float(input('Digite a área: '))
         o = Pais(id, nome, populacao, area)
         cls.paises.append(o)
-    def listar():
+    @classmethod
+    def listar(cls):
         print(n for n in cls.paises)
     def atualizar():
         pass

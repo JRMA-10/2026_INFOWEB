@@ -33,9 +33,20 @@ class PaisUI:
     paises = []
     @staticmethod
     def main():
-        pass
+        escolha = 0
+        while escolha != 7:
+            escolha = PaisUI.menu()
+            if escolha == 1: PaisUI.inserir()
+            elif escolha == 2: PaisUI.listar()
+            elif escolha == 3: PaisUI.atualizar()
+            elif escolha == 4: PaisUI.excluir()
+            elif escolha == 5: PaisUI.mais_populoso()
+            elif escolha == 6: PaisUI.mais_povoado()
+            else: escolha = 7
     def menu():
-        pass 
+        print('[1] INSERIR \n[2] LISTAR \n[3] ATUALIZAR \n[4] EXCLUIR \n[5] MAIS POPULOSO \n[6] MAIS POVOADO \n[7] SAIR')
+        escolha = int(input('Insira a sua escolha: '))
+        return escolha
     @classmethod
     def inserir(cls):
         id = int(input('Digite o ID do País: \n'))
@@ -47,11 +58,35 @@ class PaisUI:
     @classmethod
     def listar(cls):
         print(n for n in cls.paises)
-    def atualizar():
-        pass
-    def excluir():
-        pass
-    def mais_populoso():
-        pass
-    def mais_povoado():
-        pass
+    @classmethod
+    def atualizar(cls):
+        PaisUI.listar()
+        id = int(input('Informe o ID para alteração: '))
+        for obj in cls.paises:
+            if obj.get_id() == id:
+                nome = input('Digite o nome do País: \n')
+                populacao = int(input('Digite a população do País: \n'))
+                area = float(input('Digite a área: '))
+                obj(id, nome, populacao, area)
+    @classmethod
+    def excluir(cls):
+        id = int(input('Informe o ID para alteração: '))
+        for obj in cls.paises:
+            if obj.get_id() == id:
+                cls.paises.remove(obj)
+    @classmethod
+    def mais_populoso(cls):
+        populacao = []
+        for c in cls.paises:
+            populacao.append(c.get_populacao())
+        maior = max(populacao)
+        print(maior)
+    @classmethod
+    def mais_povoado(cls):
+        povoamento = []
+        for c in cls.paises:
+            povoamento.append(c.densidade())
+        maior = max(povoamento)
+        print(maior)
+
+PaisUI.main()

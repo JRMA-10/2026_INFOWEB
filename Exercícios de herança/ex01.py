@@ -52,6 +52,7 @@ class Jogadores:
 
 class UI:
     lista_de_times = []
+    lista_de_jogadores = []
     def main():
         pass
     def menu():
@@ -83,9 +84,10 @@ class UI:
                 cls.lista_de_times.remove(i)
     def inserir_jogador(): 
         id = int(input('Informe o ID do Jogador: '))
+        it = int(input('Informe o ID do seu time: '))
         nome = input('Informe o nome do jogador: ')
-        estado = input('Informe o nome do Estado do time: ')
-        jogadores = Jogadores()
+        camisa = input('Informe o número da camisa do seu jogador: ')
+        jogadores = Jogadores(id, it, nome, camisa)
     def listar_jogador():
         pass
     def atualizar_jogador():

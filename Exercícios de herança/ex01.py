@@ -1,9 +1,9 @@
 class Times:
-    lista_de_jogadores = [] 
     def __init__(self, id, nome, estado):
         self.set_id(id)
         self.set_nome(nome)
         self.set_estado(estado)
+        self.jogadores = []
     def set_id(self, i):
         if i >= 0: self.__id = i
         else: raise ValueError
@@ -19,16 +19,14 @@ class Times:
         return self.__nome
     def get_estado(self):
         return self.__estado
-    @classmethod
-    def adicionando_jogadores(self, cls, jogador):
-        cls.lista_de_jogadores.append(jogador)
-    def get_jogadores(self, cls): 
-        for j in cls.lista_de_jogadores:
-            print(j.get_nome())
+    def adicionar_jogador(self, jogador):
+        self.jogadores.append(jogador)
+    def jogadores(self):
+        return self.jogadores()
     def __str__(self):
         return f'ID: {self.get_id()} | NOME: {self.get_nome()} | ESTADO: {self.get_estado()}'
-    
-class Jogadores():
+
+class Jogadores(Times):
     def __init__(self, id, idTime, nome, camisa):
         self.set_id(id)
         self.set_idTime(idTime)
@@ -57,9 +55,8 @@ class Jogadores():
     def __str__(self): 
         return f'ID : {self.get_id()} | IdTime : {self.get_it()} | Nome : {self.get_nome()} | Camisa : {self.get_camisa()}'
 
-class UI:
+class UI():
     lista_de_times = []
-    lista_de_jogadores = []
     def main():
         pass
     def menu():
@@ -89,12 +86,16 @@ class UI:
         for i in cls.lista_de_times:
             if i.get_id() == id:
                 cls.lista_de_times.remove(i)
-    def inserir_jogador(): 
+    @classmethod
+    def inserir_jogador(cls): 
         id = int(input('Informe o ID do Jogador: '))
         it = int(input('Informe o ID do seu time: '))
         nome = input('Informe o nome do jogador: ')
         camisa = input('Informe o número da camisa do seu jogador: ')
         jogadores = Jogadores(id, it, nome, camisa)
+        for i in cls.lista_de_times:
+            if i.id == id:
+                i.adicionar_jogador(jogadores)
     def listar_jogador():
         pass
     def atualizar_jogador():
@@ -105,3 +106,13 @@ class UI:
         pass
     def transferir_jogador():
         pass
+
+
+
+"""""
+Um time precisa herdar todas as informações dos jogadore? 
+
+
+
+
+"""

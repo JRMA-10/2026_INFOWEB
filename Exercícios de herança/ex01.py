@@ -1,4 +1,5 @@
-class Times: 
+class Times:
+    lista_de_jogadores = [] 
     def __init__(self, id, nome, estado):
         self.set_id(id)
         self.set_nome(nome)
@@ -18,10 +19,16 @@ class Times:
         return self.__nome
     def get_estado(self):
         return self.__estado
+    @classmethod
+    def adicionando_jogadores(self, cls, jogador):
+        cls.lista_de_jogadores.append(jogador)
+    def get_jogadores(self, cls): 
+        for j in cls.lista_de_jogadores:
+            print(j.get_nome())
     def __str__(self):
         return f'ID: {self.get_id()} | NOME: {self.get_nome()} | ESTADO: {self.get_estado()}'
     
-class Jogadores:
+class Jogadores():
     def __init__(self, id, idTime, nome, camisa):
         self.set_id(id)
         self.set_idTime(idTime)

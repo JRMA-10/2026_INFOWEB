@@ -1,23 +1,24 @@
 from random import randint
 class Bingo:
-    bolas = []
     def __init__(self, numBolas):
         self.set_numero_de_bolas(numBolas)
+        self.bolas = []
+        self.lista = []
     def set_numBolas(self, n):
         if n >= 1: self.__numBolas = n
         else: raise ValueError
     def get_numBolas(self):
         return self.__numBolas
     @classmethod
-    def sortear(self, cls):
-        lista = [n for n in range(1, self.get_numBolas)]
-        num = randint(0, len(lista))
-        print(lista[num])
-        cls.bolas.append(lista[num])
-        lista.pop(num)
+    def sortear(self):
+        self.lista = [n for n in range(1, self.get_numBolas())]
+        num = randint(0, len(self.lista))
+        print(self.lista[num])
+        self.bolas.append(self.lista[num])
+        self.lista.pop(num)
     @classmethod
-    def get_last(self, cls):
-        return cls.bolas[-1]
+    def get_last(self):
+        return self.bolas[-1]
     @classmethod
     def sorteados(self, cls):
         return cls.bolas

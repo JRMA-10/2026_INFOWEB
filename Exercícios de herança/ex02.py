@@ -83,7 +83,7 @@ class UI:
     lista_de_playlists = []
     lista_de_musicas = []
     lista_de_itens = []
-    geral = 1
+    id_geral = 1
     def main():
         escolha = 0
         while escolha != 12:
@@ -162,13 +162,13 @@ class UI:
             if i.get_id() == id: cls.lista_de_musicas.remove(i)
     @classmethod
     def adicionando_musica_playlist(cls):
-        id = cls.geral
+        id = cls.id_geral
         idpl = int(input('Informe o ID da playlist: '))
         idmusic = int(input('Informe o ID da música: '))
         sequecia = int(input('Informe a sequencia da música: '))
         PL = PlayListitem(id, idpl, idmusic, sequecia)
         cls.lista_de_itens.append(PL)
-        cls.geral += 1
+        cls.id_geral += 1
     @classmethod
     def remover_musica_playlist(cls):
         UI.ver_musicas_playlist()

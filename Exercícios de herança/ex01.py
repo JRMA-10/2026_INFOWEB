@@ -18,14 +18,10 @@ class Times:
         return self.__nome
     def get_estado(self):
         return self.__estado
-    def adicionar_jogador(self, jogador):
-        self.jogadores.append(jogador)
-    def jogadores(self):
-        return self.jogadores()
     def __str__(self):
         return f'ID: {self.get_id()} | NOME: {self.get_nome()} | ESTADO: {self.get_estado()}'
 
-class Jogadores(Times):
+class Jogadores:
     def __init__(self, id, idTime, nome, camisa):
         self.set_id(id)
         self.set_idTime(idTime)
@@ -53,7 +49,7 @@ class Jogadores(Times):
         return self.__camisa
     def __str__(self): 
         return f'ID : {self.get_id()} | IdTime : {self.get_it()} | Nome : {self.get_nome()} | Camisa : {self.get_camisa()}'
-
+    
 class UI():
     lista_de_times = []
     lista_de_jogadores = []
@@ -79,9 +75,12 @@ class UI():
     @classmethod
     def inserir_time(cls):
         id = int(input('Informe o ID do time: '))
-        nome = input('Informe o nome do Time: ')
+        nome = input('Informe o nome do Time: ').strip()
         estado = input('Informe o nome do Estado do time: ')
         time = Times(id, nome, estado)
+        for i in cls.lista_de_times:
+            if i.get_id() == id or i.get_nome() == nome: print('Não foi possível adicionar o TIME!')
+            return
         cls.lista_de_times.append(time)
     @classmethod
     def listar_time(cls):
@@ -99,15 +98,17 @@ class UI():
         UI.listar_time()
         id = int(input('Informe o ID do time que você deseja excluir: '))
         for i in cls.lista_de_times:
-            if i.get_id() == id:
-                cls.lista_de_times.remove(i)
+            if i.get_id() == id: cls.lista_de_times.remove(i)
     @classmethod
     def inserir_jogador(cls): 
         id = int(input('Informe o ID do Jogador: '))
         it = int(input('Informe o ID do seu time: '))
-        nome = input('Informe o nome do jogador: ')
+        nome = input('Informe o nome do jogador: ').strip()
         camisa = int(input('Informe o número da camisa do seu jogador: '))
         jogadores = Jogadores(id, it, nome, camisa)
+        for i in cls.lista_de_jogadores:
+            if i.get_id() == id or i.get_nome() == nome: print('Não foi possível adicionar o Jogador!')
+            return
         cls.lista_de_jogadores.append(jogadores)
     @classmethod
     def listar_jogador(cls):
@@ -119,7 +120,7 @@ class UI():
         for i in cls.lista_de_jogadores: 
             if i.get_id() == id: 
                 i.set_nome(input('Informe o novo nome: '))
-                i.set_estado(input('Informe o seu nove número: '))
+                i.set_camisa(int(input('Informe o seu nove número: ')))
     @classmethod
     def excluir_jogador(cls):
         UI.listar_jogador()

@@ -89,7 +89,7 @@ class BoletoUI:
         codBarras = input('Informe o código de Barras: ').split()
         for i in cls.boletos: 
             if i.get_cod_barras == codBarras: 
-                dataEmissao = i.set_(datetime.strptime(input('Informe a data de emissão: \n', '%d/%m/%Y')).split())
+                dataEmissao = i.set_data_emissao(datetime.strptime(input('Informe a data de emissão: \n', '%d/%m/%Y')).split())
                 dataVencimento = datetime.strptime(input('Informe a data de vencimento: \n', '%d/%m/%Y')).split()
                 valorBoleto = int(input('Informe o valor do Boleto: '))
     def excluir():

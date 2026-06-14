@@ -6,8 +6,14 @@ for i in ordem_idosos:
     contador = 0
     while idades.index(i) != ordem_idosos.index(i):
         anterior = idades[idades.index(i) - 1]
-        idades[idades.index(i)] = idades[idades.index(i) - 1]
-        idades[idades.index(i) - 1] = idades[idades.index(i)]
+        atual = idades[idades.index(i)]
+        indice = idades.index(i)
+        idades[indice - 1] = atual
+        idades[indice] = anterior
         contador += 1
     lista_tempos.append(contador)
+
+print(ordem_idosos)
+print(lista_tempos)
 print(idades)
+print(f'Levaria {max(lista_tempos)} segundos!')
